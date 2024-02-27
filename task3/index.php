@@ -31,11 +31,24 @@ if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/
 }
 
 if (empty($_POST['telephone'])) {
-  print('Заполните имя.<br/>');
+  print('Заполните телефон.<br/>');
   $errors = TRUE;
 }
 
+if (empty($_POST['email'])) {
+  print('Заполните почту.<br/>');
+  $errors = TRUE;
+}
 
+if (empty($_POST['radio-1'])) {
+  print('Выберете вариант.<br/>');
+  $errors = TRUE;
+}
+
+if (empty($_POST['radio-2'])) {
+  print('Выберете вариант.<br/>');
+  $errors = TRUE;
+}
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.
 // *************
