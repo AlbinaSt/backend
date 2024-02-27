@@ -30,6 +30,11 @@ if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/
   $errors = TRUE;
 }
 
+if (empty($_POST['telephone'])) {
+  print('Заполните имя.<br/>');
+  $errors = TRUE;
+}
+
 
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.
