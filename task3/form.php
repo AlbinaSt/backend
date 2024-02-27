@@ -33,14 +33,14 @@
           ><input
             type="radio"
             checked="checked"
-            name="radio-group-1"
+            name="radio-1"
             value="м"
           />
           Мужчина</label
         >
         <br />
         <label
-          ><input type="radio" name="radio-group-1" value="ж" /> Женщина</label
+          ><input type="radio" name="radio-1" value="ж" /> Женщина</label
         ><br />
         <br />
         <label>
