@@ -1,8 +1,6 @@
 <form action="" method="POST">
   <input name="fio" />
-  <select name="year">
-    <?php 
-<label>
+  <label>
           Телефон:<br />
           <input
             name="telephone"
