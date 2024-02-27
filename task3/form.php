@@ -54,6 +54,11 @@
           </select> </label
         ><br />
         <br />
+   <label
+          ><input type="checkbox" checked="checked" name="check-1" /> С
+          контрактом ознакомлен</label
+        ><br />
+        <br />
   </select>
   
   <input type="submit" value="ok" />
