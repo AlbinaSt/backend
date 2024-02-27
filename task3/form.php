@@ -2,10 +2,6 @@
   <input name="fio" />
   <select name="year">
     <?php 
-    for ($i = 1922; $i <= 2022; $i++) {
-      printf('<option value="%d">%d год</option>', $i, $i);
-    }
-    ?>
 <label>
           Телефон:<br />
           <input
@@ -25,7 +21,7 @@
         <br />
         <label>
           Дата рождения:<br />
-          <input name="field-date" value="2000-01-01" type="date" /> </label
+          <input name="year" value="2000-01-01" type="date" /> </label
         ><br />
         <br />
         Ваш пол:<br />
