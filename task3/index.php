@@ -76,67 +76,16 @@ $db = new PDO('mysql:host=localhost;dbname=u67437', $user, $pass,
 try {
   $stmt = $db->prepare("INSERT INTO application SET name = ?");
   $stmt->execute([$_POST['fio']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt->execute([$_POST['fio']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
   $stmt = $db->prepare("INSERT INTO application SET phone = ?");
   $stmt->execute([$_POST['telephone']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
   $stmt = $db->prepare("INSERT INTO application SET email = ?");
   $stmt->execute([$_POST['email']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
-  $stmt = $db->prepare("INSERT INTO application SET data = ?");
+   $stmt = $db->prepare("INSERT INTO application SET data = ?");
   $stmt->execute([$_POST['year']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
-  $stmt = $db->prepare("INSERT INTO application SET pol = ?");
+   $stmt = $db->prepare("INSERT INTO application SET pol = ?");
   $stmt->execute([$_POST['radio-1']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
   $stmt = $db->prepare("INSERT INTO application SET bio = ?");
   $stmt->execute([$_POST['field-name-2']]);
-}
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-try {
   $stmt = $db->prepare("INSERT INTO application SET ok = ?");
   $stmt->execute([$_POST['check-1']]);
 }
@@ -144,6 +93,8 @@ catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
 }
+
+
 
 
 //  stmt - это "дескриптор состояния".
@@ -166,4 +117,4 @@ $stmt->execute();
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
 // Если ошибок при этом не видно, то необходимо настроить параметр display_errors для PHP.
-// header('Location: ?save=1');
+ header('Location: ?save=1');
