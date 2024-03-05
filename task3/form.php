@@ -4,7 +4,8 @@
     <input 
       name="fio"
       placeholder="Введите имя"
-      /> </label>
+      /> <br /
+  </label>
   <label>
           Телефон:<br />
           <input
