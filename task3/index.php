@@ -45,7 +45,7 @@ if (empty($_POST['radio-1'])) {
   $errors = TRUE;
 }
 
-if (empty($_POST['field-name-3'])) {
+if (empty($_POST['field-name-2'])) {
   print('Выберете вариант.<br/>');
   $errors = TRUE;
 }
