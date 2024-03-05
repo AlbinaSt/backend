@@ -46,11 +46,11 @@ if (empty($_POST['radio-1'])) {
 }
 
 if (empty($_POST['field-name-2'])) {
-  print('Выберете вариант.<br/>');
+  print('Введите текст.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['ok'])) {
+if (empty($_POST['check-1'])) {
   print('Необходимо согласие.<br/>');
   $errors = TRUE;
 }
