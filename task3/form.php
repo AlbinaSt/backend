@@ -59,7 +59,6 @@
           контрактом ознакомлен</label
         ><br />
         <br />
-  </select>
   
   <input type="submit" value="ok" />
 </form>
