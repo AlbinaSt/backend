@@ -58,6 +58,6 @@
         ><br />
         <br />
   
-  <input type="submit" value="ok" name="ok" />
+  <input type="submit" value="ok" />
 </form>
 
