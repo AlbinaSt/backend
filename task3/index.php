@@ -129,7 +129,7 @@ catch(PDOException $e){
 
 try {
   $stmt = $db->prepare("INSERT INTO application SET bio = ?");
-  $stmt->execute([$_POST['text-field-2']]);
+  $stmt->execute([$_POST['field-name-2']]);
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
