@@ -1,5 +1,10 @@
 <form action="" method="POST">
-  <input name="fio" />
+  <label>
+    Имя:<br />
+    <input 
+      name="fio"
+      placeholder="Введите имя"
+      /> </label>
   <label>
           Телефон:<br />
           <input
