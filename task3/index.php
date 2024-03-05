@@ -45,10 +45,16 @@ if (empty($_POST['radio-1'])) {
   $errors = TRUE;
 }
 
-if (empty($_POST['radio-2'])) {
+if (empty($_POST['field-name-3'])) {
   print('Выберете вариант.<br/>');
   $errors = TRUE;
 }
+
+if (empty($_POST['ok'])) {
+  print('Необходимо согласие.<br/>');
+  $errors = TRUE;
+}
+
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.
 // *************
