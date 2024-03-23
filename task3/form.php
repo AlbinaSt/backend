@@ -22,7 +22,10 @@ p:before{content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#
 button{float:right;padding:8px 12px;margin:8px 0 0;font-family:'Montserrat',sans-serif;border:2px solid #78788c;background:0;color:#5a5a6e;cursor:pointer;transition:all .3s}
 
 button:hover{background:#78788c;color:#fff}
-  
+
+.radio_1 { 
+  display: inline;
+}
 </style>
 <body>
 <form class="form" action="" method="POST">
