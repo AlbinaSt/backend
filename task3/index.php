@@ -96,7 +96,7 @@ foreach ($_POST['abilities'] as $language) {
     } else {
         echo "Язык программирования '$language' не найден в базе данных.";
     }
-
+}
 
 
 
