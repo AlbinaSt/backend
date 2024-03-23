@@ -7,7 +7,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <link rel="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" type="text/css"/>
 
-<form action="" method="POST">
+<form class="form" action="" method="POST">
+  <h2>ЗАЯВКА</h2>
+  
   <label>
     Имя:<br />
     <input 
