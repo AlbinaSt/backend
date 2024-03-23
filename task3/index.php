@@ -74,20 +74,8 @@ $db = new PDO('mysql:host=localhost;dbname=u67437', $user, $pass,
 
 // Подготовленный запрос. Не именованные метки.
 try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt->execute([$_POST['fio']]);
-  $stmt = $db->prepare("INSERT INTO application SET phone = ?");
-  $stmt->execute([$_POST['telephone']]);
-  $stmt = $db->prepare("INSERT INTO application SET email = ?");
-  $stmt->execute([$_POST['email']]);
-   $stmt = $db->prepare("INSERT INTO application SET data = ?");
-  $stmt->execute([$_POST['year']]);
-   $stmt = $db->prepare("INSERT INTO application SET pol = ?");
-  $stmt->execute([$_POST['radio-1']]);
-  $stmt = $db->prepare("INSERT INTO application SET bio = ?");
-  $stmt->execute([$_POST['field-name-2']]);
-  $stmt = $db->prepare("INSERT INTO application SET ok = ?");
-  $stmt->execute([$_POST['check-1']]);
+  $stmt = $db->prepare("INSERT INTO application SET name = ?, phone = ?, email = ?, data = ?, pol = ?, bio = ?, ok = ?");
+  $stmt->execute([$_POST['fio']$_POST['telephonel'], $_POST['email'], $_POST['year'], $_POST['radio-1'], $_POST['field-name-2'], $_POST['check-1']]);
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
