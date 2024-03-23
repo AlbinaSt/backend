@@ -57,9 +57,9 @@ button:hover{background:#78788c;color:#fff}
           <input name="year" value="2000-01-01" type="date" /> </label
         ><br />
         <br />
+        <label>
         Ваш пол:<br />
-        <label
-          ><input
+           <input
             type="radio"
             checked="checked"
             name="radio-1"
@@ -78,7 +78,7 @@ button:hover{background:#78788c;color:#fff}
        $('#example-getting-started').multiselect();
     });
   </script>
-  
+  <label>
   Любимый язык программирования:
       <br />
     <select id="example-getting-started" class = "f" name="abilities[]" multiple="multiple">
@@ -92,6 +92,7 @@ button:hover{background:#78788c;color:#fff}
             <option value="Java">Java</option>
             <option value="Haskel">Haskel</option>
         </select>
+  </label>
   <br />
         <label>
           Биография:<br />
@@ -101,10 +102,9 @@ button:hover{background:#78788c;color:#fff}
           ></textarea></label
         ><br />
         <br />
-   <label
-          ><input type="checkbox" checked="checked" name="check-1" /> С
-          контрактом ознакомлен</label
-        ><br />
+   <input type="checkbox" checked="checked" name="check-1" /> С
+          контрактом ознакомлен
+        <br />
         <br />
   
   <input class="button" type="submit" value="Отправить" />
