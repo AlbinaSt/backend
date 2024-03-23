@@ -83,7 +83,7 @@ catch(PDOException $e){
 }
 
 foreach ($_POST['languages'] as $language) {
-    $sql = "INSERT INTO application_languages (id, language_id) VALUES ('$id', '$language')";
+    $sql = "INSERT INTO application_languages (application_id, language_id) VALUES ('$application_id', '$language')";
     if ($conn->query($sql) !== TRUE) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
