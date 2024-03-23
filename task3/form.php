@@ -1,3 +1,12 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" type="text/css"/>
+
 <form action="" method="POST">
   <label>
     Имя:<br />
@@ -43,10 +52,14 @@
           ><input type="radio" name="radio-1" value="ж" /> Женщина</label
         ><br />
         <br />
-
+  
+$(document).ready(function() {
+    $('#example-getting-started').multiselect();
+});
+  
   Любимый язык программирования:
       <br />
-    <select class = "f" name="abilities[]" multiple="multiple">
+    <select id="example-getting-started" class = "f" name="abilities[]" multiple="multiple">
             <option disabled>Выберите любимый язык пр.</option>
             <option value="Pascal">Pascal</option>
             <option value="C">C</option>
