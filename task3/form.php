@@ -13,9 +13,9 @@
 
 h2{margin:10px 0;padding-bottom:10px;width:180px;color:#78788c;border-bottom:3px solid #78788c}
 
-input{width:100%;padding:10px;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:2px solid #bebed2}
+input1{width:100%;padding:10px;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:2px solid #bebed2}
 
-input:focus{border-bottom:2px solid #78788c}
+input1:focus{border-bottom:2px solid #78788c}
 
 p:before{content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#5a5a5a}
 
@@ -34,6 +34,7 @@ button:hover{background:#78788c;color:#fff}
   <label>
     Имя:<br />
     <input 
+      class="input1"
       name="fio"
       placeholder="Введите имя"
       /> <br />
@@ -41,6 +42,7 @@ button:hover{background:#78788c;color:#fff}
   <label>
           Телефон:<br />
           <input
+            class="input1"
             name="telephone"
             type="tel"
             placeholder="Введите номер телефона"
@@ -49,6 +51,7 @@ button:hover{background:#78788c;color:#fff}
         <label>
           Email:<br />
           <input
+            class="input1"
             name="email"
             type="email"
             placeholder="Введите вашу почту"
@@ -57,7 +60,7 @@ button:hover{background:#78788c;color:#fff}
         <br />
         <label>
           Дата рождения:<br />
-          <input name="year" value="2000-01-01" type="date" /> </label
+          <input class="input1" name="year" value="2000-01-01" type="date" /> </label
         ><br />
         <br />
         <label>
