@@ -83,7 +83,7 @@ catch(PDOException $e){
   exit();
 }
 
-foreach ($_POST['abilities[]'] as $language) {
+foreach ($_POST['abilities'] as $language) {
     $stmt = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
     $stmt->execute([$application_id, $language]);
 }
