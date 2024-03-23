@@ -62,15 +62,14 @@ button:hover{background:#78788c;color:#fff}
         <br />
         <label>
         Ваш пол:<br /></label>
-           <input
+          <class="radio-1"> <input
             type="radio"
             checked="checked"
             name="radio-1"
             value="м"
-          />
-          Мужчина
+          />Мужчина</class>
         <br />
-        <input type="radio" name="radio-1" value="ж" /> Женщина
+        <class="radio-1"><input type="radio" name="radio-1" value="ж" />Женщина</class>
         <br />
         <br />
 
