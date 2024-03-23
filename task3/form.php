@@ -89,6 +89,6 @@
         ><br />
         <br />
   
-  <input type="submit" value="ok" />
+  <input class="button" type="submit" value="Отправить" />
 </form>
 
