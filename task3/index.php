@@ -90,7 +90,7 @@ foreach ($_POST['abilities'] as $language) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result) {
-        $language_id = $result['language_id'];
+        $language_id = $result['id'];
       $stmt = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
         $stmt->execute([$application_id, $language_id]);
     } else {
