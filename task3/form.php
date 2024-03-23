@@ -1,4 +1,6 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<head>
+  <title>Task 3</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
@@ -27,6 +29,7 @@ button:hover{background:#78788c;color:#fff}
   display: inline;
 }
 </style>
+</head>
 <body>
 <form class="form" action="" method="POST">
   <h2>ЗАЯВКА</h2>
