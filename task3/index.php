@@ -85,7 +85,7 @@ catch(PDOException $e){
 
 foreach ($_POST['abilities'] as $language) {
 
-  $stmt = $db->prepare("SELECT language_id FROM programming_languages WHERE language_name = ?");
+  $stmt = $db->prepare("SELECT id FROM programming_languages WHERE language_name = ?");
     $stmt->execute([$language]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
