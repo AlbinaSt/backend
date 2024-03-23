@@ -84,9 +84,19 @@ catch(PDOException $e){
 }
 
 foreach ($_POST['abilities'] as $language) {
-    $stmt = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
-    $stmt->execute([$application_id, $language]);
-}
+
+  $stmt = $db->prepare("SELECT language_id FROM programming_languages WHERE language_name = ?");
+    $stmt->execute([$language]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        $language_id = $result['language_id'];
+      $stmt = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
+        $stmt->execute([$application_id, $language_id]);
+    } else {
+        echo "Язык программирования '$language' не найден в базе данных.";
+    }
+
 
 
 
