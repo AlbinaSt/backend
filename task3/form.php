@@ -43,7 +43,21 @@
           ><input type="radio" name="radio-1" value="ж" /> Женщина</label
         ><br />
         <br />
-  
+
+  Любимый язык программирования:
+      <br />
+    <select class = "f" name="abilities[]" multiple="multiple">
+            <option disabled>Выберите любимый язык пр.</option>
+            <option value="Pascal">Pascal</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="PHP">PHP</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="Haskel">Haskel</option>
+        </select>
+  <br />
         <label>
           Биография:<br />
           <textarea
