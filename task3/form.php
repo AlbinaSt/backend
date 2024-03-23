@@ -23,7 +23,7 @@ button{float:right;padding:8px 12px;margin:8px 0 0;font-family:'Montserrat',sans
 
 button:hover{background:#78788c;color:#fff}
 
-.radio_1 { 
+.radio-1 { 
   display: inline;
 }
 </style>
