@@ -52,10 +52,12 @@
           ><input type="radio" name="radio-1" value="ж" /> Женщина</label
         ><br />
         <br />
-  
-$(document).ready(function() {
-    $('#example-getting-started').multiselect();
-});
+
+  <script>
+    $(document).ready(function() {
+       $('#example-getting-started').multiselect();
+    });
+  </script>
   
   Любимый язык программирования:
       <br />
