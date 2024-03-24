@@ -28,6 +28,23 @@ button:hover{background:#78788c;color:#fff}
 .radio-1 { 
   display: inline;
 }
+
+  @media (max-width: 600px) {
+  .form {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  h2 {
+    width: 100%;
+  }
+
+  input1 {
+    width: 100%;
+  }
+}
+  
 </style>
 </head>
 <body>
