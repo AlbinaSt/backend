@@ -57,7 +57,7 @@ if (empty($_POST['check-1'])) {
 }
 
 if (empty($_POST['abilities'])) {
-  print('Выберbте языки.<br/>');
+  print('Выберите языки.<br/>');
   $errors = TRUE;
 }
 
