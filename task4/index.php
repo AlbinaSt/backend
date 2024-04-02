@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['fio'] = !empty($_COOKIE['fio_error']);
   $errors['telephone'] = !empty($_COOKIE['telephone_error']);
   $errors['email'] = !empty($_COOKIE['email_error']);
+  $errors['year'] = !empty($_COOKIE['year_error']);
   // TODO: аналогично все поля.
 
   // Выдаем сообщения об ошибках.
