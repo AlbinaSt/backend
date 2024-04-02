@@ -27,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   // Складываем признак ошибок в массив.
   $errors = array();
   $errors['fio'] = !empty($_COOKIE['fio_error']);
+  $errors['telephone'] = !empty($_COOKIE['telephone_error']);
+  $errors['email'] = !empty($_COOKIE['email_error']);
   // TODO: аналогично все поля.
 
   // Выдаем сообщения об ошибках.
@@ -36,11 +38,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Выводим сообщение.
     $messages[] = '<div class="error">Заполните имя.</div>';
   }
-  // TODO: тут выдать сообщения об ошибках в других полях.
 
+  if ($errors['telephone']) {
+    setcookie('telephone_error', '', 100000);
+    $messages[] = '<div class="error">Заполните телефон.</div>';
+  }
+
+  if ($errors['email']) {
+    setcookie('email_error', '', 100000);
+    $messages[] = '<div class="error">Заполните почту.</div>';
+  }
+
+   if ($errors['year']) {
+    setcookie('year_error', '', 100000);
+    $messages[] = '<div class="error">Введите дату рождения.</div>';
+  }
+  
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
   $values['fio'] = empty($_COOKIE['fio_value']) ? '' : $_COOKIE['fio_value'];
+  $values['telephone'] = empty($_COOKIE['telephone_value']) ? '' : $_COOKIE['telephone_value'];
+  $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
+  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
   // TODO: аналогично все поля.
 
   // Включаем содержимое файла form.php.
@@ -62,6 +81,32 @@ else {
     setcookie('fio_value', $_POST['fio'], time() + 30 * 24 * 60 * 60);
   }
 
+  if (empty($_POST['telephone'])) {
+    // Выдаем куку на день с флажком об ошибке в поле fio.
+    setcookie('telephone_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('telephone_value', $_POST['telephone'], time() + 30 * 24 * 60 * 60);
+  }
+
+  if (empty($_POST['email'])) {
+    setcookie('email_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
+  }
+
+  if (empty($_POST['year'])) {
+    setcookie('year_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    setcookie('year_value', $_POST['year'], time() + 30 * 24 * 60 * 60);
+  }
+  
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.
 // Сохранить в Cookie признаки ошибок и значения полей.
@@ -75,6 +120,9 @@ else {
   else {
     // Удаляем Cookies с признаками ошибок.
     setcookie('fio_error', '', 100000);
+    setcookie('telephone_error', '', 100000);
+    setcookie('email_error', '', 100000);
+    setcookie('year_error', '', 100000); 
     // TODO: тут необходимо удалить остальные Cookies.
   }
 
