@@ -1,7 +1,10 @@
 <html>
   <head>
+    <title>Task 4</title>
     <style>
-/* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
+input {
+  
+}
 .error {
   border: 2px solid red;
 }
