@@ -13,11 +13,6 @@
 h2{
   margin:10px 0;padding-bottom:10px;width:180px;color:#78788c;border-bottom:3px solid #78788c}
 
-input{
-  width:100%;padding:10px;box-sizing:border-box;background:none;outline:none;resize:none;border:0;font-family:'Montserrat',sans-serif;transition:all .3s;border-bottom:2px solid #bebed2}
-
-input:focus
-  {border-bottom:2px solid #78788c}
 
 p:before
   {content:attr(type);display:block;margin:28px 0 0;font-size:14px;color:#5a5a5a}
