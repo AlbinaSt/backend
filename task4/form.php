@@ -69,6 +69,53 @@ if (!empty($messages)) {
       Введите почту: <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" />
       Введите дату рождения: <input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php print $values['year']; ?>" />
       <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" />
+              <label>
+        Ваш пол:</label>
+        <br />
+          <class="radio-1"> <input
+            type="radio"
+            checked="checked"
+            name="radio-1"
+            value="м"
+          />Мужчина</class>
+        <br />
+        <class="radio-1"><input type="radio" name="radio-1" value="ж" />Женщина</class>
+        <br />
+        <br />
+
+  <script>
+    $(document).ready(function() {
+       $('#example-getting-started').multiselect();
+    });
+  </script>
+  <label>
+  Любимый язык программирования:
+      <br />
+    <select id="example-getting-started" class = "f" name="abilities[]" multiple="multiple">
+            <option disabled>Выберите любимый язык пр.</option>
+            <option value="Pascal">Pascal</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="PHP">PHP</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="Haskel">Haskel</option>
+        </select>
+  </label>
+  <br />
+        <label>
+          Биография:<br />
+          <textarea
+            name="field-name-2"
+            placeholder="Введите текст"
+          ></textarea></label
+        ><br />
+        <br />
+   <input type="checkbox" checked="checked" name="check-1" /> С
+          контрактом ознакомлен
+        <br />
+
       <input type="submit" value="ok" />
     </form>
   </body>
