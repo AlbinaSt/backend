@@ -66,15 +66,13 @@ if (!empty($messages)) {
 ?>
 
     <form class="form" action="" method="POST">
-      Введите имя: <input type="text" name="name" value="<?php echo isset($_COOKIE['name']) ? $_COOKIE['name'] : ''; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
+      Введите имя: <br /><input type="text" name="name" value="<?php echo isset($_COOKIE['name']) ? $_COOKIE['name'] : ''; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
       <br />
-      Введите телефон: <input name="telephone" type="tel" <?php if ($errors['telephone']) {print 'class="error"';} ?> value="<?php print $values['telephone']; ?>" />
+      Введите телефон: <br /> <input name="telephone" type="tel" <?php if ($errors['telephone']) {print 'class="error"';} ?> value="<?php print $values['telephone']; ?>" />
       <br />
-      Введите почту: <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" />
+      Введите почту: <br /> <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" />
       <br />
-      Введите дату рождения: <input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php print $values['year']; ?>" />
-      <br/>
-      <input name="email" type="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" />
+      Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php print $values['year']; ?>" />
       <br />
       <label>
         Ваш пол:</label>
@@ -122,7 +120,7 @@ if (!empty($messages)) {
    <input type="checkbox" checked="checked" name="check-1" /> С
           контрактом ознакомлен
         <br />
-
+      <br />
       <input type="submit" value="ok" />
     </form>
   </body>
