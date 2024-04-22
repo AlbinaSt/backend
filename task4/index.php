@@ -58,12 +58,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('year_error', '', 100000);
     $messages[] = '<div class="error">Введите дату рождения.</div>';
   }
+
+   if ($errors['year']) {
+    setcookie('year_error', '', 100000);
+    $messages[] = '<div class="error">Введите дату рождения.</div>';
+  }
+
+   if ($errors['year']) {
+    setcookie('year_error', '', 100000);
+    $messages[] = '<div class="error">Введите дату рождения.</div>';
+  }
+
+   if ($errors['year']) {
+    setcookie('year_error', '', 100000);
+    $messages[] = '<div class="error">Введите дату рождения.</div>';
+  }
   
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
   $values['fio'] = empty($_COOKIE['fio_value']) ? '' : $_COOKIE['fio_value'];
   $values['telephone'] = empty($_COOKIE['telephone_value']) ? '' : $_COOKIE['telephone_value'];
   $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
+  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
+  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
+  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
   $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
   // TODO: аналогично все поля.
 
