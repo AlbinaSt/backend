@@ -30,24 +30,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['telephone'] = !empty($_COOKIE['telephone_error']);
   $errors['email'] = !empty($_COOKIE['email_error']);
   $errors['year'] = !empty($_COOKIE['year_error']);
+  $errors['abilities[]'] = !empty($_COOKIE['abilities_error']);
+  $errors['radio-1'] = !empty($_COOKIE['radio_error']);
+  $errors['check-1'] = !empty($_COOKIE['check_error']);
   // TODO: аналогично все поля.
 
   if (empty($_POST['name']) || !preg_match('/^[a-zA-Zа-яА-Я\s]+$/', $_POST['name'])) {
     $errors['fio'] = true;
     setcookie('fio_error', 'Заполните имя.', time() + 100000, "/");
 }
-  // Выдаем сообщения об ошибках.
-//  if ($errors['fio']) {
-    // Удаляем куку, указывая время устаревания в прошлом.
-  //  setcookie('fio_error', '', 100000);
-    // Выводим сообщение.
-    //$messages[] = '<div class="error">Заполните имя.</div>';
-  //}
-
-  if ($errors['telephone']) {
-    setcookie('telephone_error', '', 100000);
-    $messages[] = '<div class="error">Заполните телефон.</div>';
-  }
+  if (empty($_POST['name']) || !preg_match('^\+?[0-9\s-]*', $_POST['telephone'])) {
+    $errors['telephone'] = true;
+    setcookie('telephone_error', 'Заполните номер телефона.', time() + 100000, "/");
+}
 
   if ($errors['email']) {
     setcookie('email_error', '', 100000);
