@@ -141,12 +141,12 @@ else {
     setcookie('radio_value', $_POST['radio-1'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['abilities[]'])) {
+  if (empty($_POST['abilities'])) {
     setcookie('abilities_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
   else {
-    setcookie('abilities_value', $_POST['abilities[]'], time() + 30 * 24 * 60 * 60);
+    setcookie('abilities_value', $_POST['abilities'], time() + 30 * 24 * 60 * 60);
   }
 
    if (empty($_POST['field-name-2'])) {
