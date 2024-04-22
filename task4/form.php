@@ -82,14 +82,14 @@ if (!empty($messages)) {
       <label>
         Ваш пол:</label>
         <br />
-          <class="radio-1"> <input
+          <input
             type="radio"
             checked="checked"
             name="radio-1"
             value="м"
-          />Мужчина</class>
+          />Мужчина
         <br />
-        <class="radio-1"><input type="radio" name="radio-1" value="ж" />Женщина</class>
+        <input type="radio" name="radio-1" value="ж" />Женщина
         <br />
         <br />
 
