@@ -151,7 +151,14 @@ else {
   
 
   if ($errors) {
-   
+
+    setcookie('fio_error', '1', time() + 24 * 60 * 60);
+    setcookie('telephone_error', '1', time() + 24 * 60 * 60);
+    setcookie('email_error', '1', time() + 24 * 60 * 60);
+    setcookie('radio_error', '1', time() + 24 * 60 * 60);
+    setcookie('check_error', '1', time() + 24 * 60 * 60);
+    setcookie('field_error', '1', time() + 24 * 60 * 60);
+    
     header('Location: index.php');
     exit();
   }
