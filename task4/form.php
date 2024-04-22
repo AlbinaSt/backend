@@ -70,9 +70,9 @@ if (!empty($messages)) {
       <br />
       Введите имя: <br /><input type="text" name="name" value="<?php echo isset($_COOKIE['name']) ? $_COOKIE['name'] : ''; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
       <br />
-      Введите телефон: <br /> <input type="tel" name="telephone" value="&lt;?php echo isset($_COOKIE['phone']) ? $_COOKIE['phone'] : ''; ?>" pattern="^\+?[0-9\s-]*" title="Введите корректный номер телефона" required>
+      Введите телефон: <br /> <input type="tel" name="telephone" value="<?php echo isset($_COOKIE['phone']) ? $_COOKIE['phone'] : ''; ?>" pattern="^\+?[0-9\s-]*" title="Введите корректный номер телефона" required>
       <br />
-      Введите почту: <br /> <input type="email" name="email" value="&lt;?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" title="Введите корректный email адрес" required>
+      Введите почту: <br /> <input type="email" name="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" title="Введите корректный email адрес" required>
       <br />
       Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php print $values['year']; ?>" />
       <br />
