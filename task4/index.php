@@ -39,32 +39,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $errors['fio'] = true;
     setcookie('fio_error', 'Заполните имя.', time() + 100000, "/");
 }
-  if (empty($_POST['name']) || !preg_match('^\+?[0-9\s-]*', $_POST['telephone'])) {
+  
+  if (empty($_POST['telephone']) || !preg_match('^\+?[0-9\s-]*', $_POST['telephone'])) {
     $errors['telephone'] = true;
     setcookie('telephone_error', 'Заполните номер телефона.', time() + 100000, "/");
 }
 
-  if ($errors['email']) {
-    setcookie('email_error', '', 100000);
-    $messages[] = '<div class="error">Заполните почту.</div>';
-  }
+  if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = true;
+    setcookie('email_error', 'Введите корректный email адрес.', time() + 100000, "/");
+} 
 
    if ($errors['year']) {
     setcookie('year_error', '', 100000);
     $messages[] = '<div class="error">Введите дату рождения.</div>';
   }
 
-   if ($errors['year']) {
+   if ($errors['radio-1']) {
     setcookie('year_error', '', 100000);
     $messages[] = '<div class="error">Введите дату рождения.</div>';
   }
 
-   if ($errors['year']) {
+   if ($errors['abilities']) {
     setcookie('year_error', '', 100000);
     $messages[] = '<div class="error">Введите дату рождения.</div>';
   }
 
-   if ($errors['year']) {
+   if ($errors['check-1']) {
     setcookie('year_error', '', 100000);
     $messages[] = '<div class="error">Введите дату рождения.</div>';
   }
