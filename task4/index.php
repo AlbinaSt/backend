@@ -146,7 +146,7 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie('abilities_value', $_POST['abilities'], time() + 30 * 24 * 60 * 60);
+    setcookie('abilities_value', serialize($_POST['abilities']), time() + 30 * 24 * 60 * 60);
   }
 
    if (empty($_POST['field-name-2'])) {
