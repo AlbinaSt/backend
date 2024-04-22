@@ -68,7 +68,6 @@ if (!empty($messages)) {
     <form class="form" action="" method="POST">
       <h2>Заявка</h2>
       <br />
-      <br />
       Введите имя: <br /><input type="text" name="name" value="<?php echo isset($_COOKIE['name']) ? $_COOKIE['name'] : ''; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
       <br />
       Введите телефон: <br /> <input name="telephone" type="tel" <?php if ($errors['telephone']) {print 'class="error"';} ?> value="<?php print $values['telephone']; ?>" />
