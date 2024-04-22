@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['check-1'] = !empty($_COOKIE['check_error']);
   // TODO: аналогично все поля.
 
-  if (empty($_POST['name']) || !preg_match('/^[a-zA-Zа-яА-Я\s]+$/', $_POST['name'])) {
+  if (empty($_POST['fio']) || !preg_match('/^[a-zA-Zа-яА-Я\s]+$/', $_POST['fio'])) {
     $errors['fio'] = true;
     setcookie('fio_error', 'Заполните имя.', time() + 100000, "/");
 }
@@ -56,18 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 
    if ($errors['radio-1']) {
-    setcookie('year_error', '', 100000);
-    $messages[] = '<div class="error">Введите дату рождения.</div>';
+    setcookie('radio_error', '', 100000);
+    $messages[] = '<div class="error">Выберите пол.</div>';
   }
 
    if ($errors['abilities']) {
-    setcookie('year_error', '', 100000);
-    $messages[] = '<div class="error">Введите дату рождения.</div>';
+    setcookie('abilities_error', '', 100000);
+    $messages[] = '<div class="error">Выберите языки.</div>';
   }
 
    if ($errors['check-1']) {
-    setcookie('year_error', '', 100000);
-    $messages[] = '<div class="error">Введите дату рождения.</div>';
+    setcookie('check_error', '', 100000);
+    $messages[] = '<div class="error">Необходимо согласие.</div>';
   }
   
   // Складываем предыдущие значения полей в массив, если есть.
@@ -76,9 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['telephone'] = empty($_COOKIE['telephone_value']) ? '' : $_COOKIE['telephone_value'];
   $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
   $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
-  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
-  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
-  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
+  $values['radio-1'] = empty($_COOKIE['radio_value']) ? '' : $_COOKIE['radio_value'];
+  $values['abilities'] = empty($_COOKIE['abilities_value']) ? '' : $_COOKIE['abilities_value'];
+  $values['check-1'] = empty($_COOKIE['check_value']) ? '' : $_COOKIE['check_value'];
   // TODO: аналогично все поля.
 
   // Включаем содержимое файла form.php.
@@ -125,6 +125,30 @@ else {
   else {
     setcookie('year_value', $_POST['year'], time() + 30 * 24 * 60 * 60);
   }
+
+  if (empty($_POST['radio-1'])) {
+    setcookie('radio_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    setcookie('radio_value', $_POST['radio-1'], time() + 30 * 24 * 60 * 60);
+  }
+
+  if (empty($_POST['abilities'])) {
+    setcookie('abilities_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    setcookie('abilities_value', $_POST['abilities'], time() + 30 * 24 * 60 * 60);
+  }
+
+  if (empty($_POST['check-1'])) {
+    setcookie('check_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    setcookie('check_value', $_POST['check'], time() + 30 * 24 * 60 * 60);
+  }
   
 // *************
 // TODO: тут необходимо проверить правильность заполнения всех остальных полей.
@@ -142,11 +166,14 @@ else {
     setcookie('telephone_error', '', 100000);
     setcookie('email_error', '', 100000);
     setcookie('year_error', '', 100000); 
+    setcookie('radio_error', '', 100000); 
+    setcookie('abilities_error', '', 100000); 
+    setcookie('check_error', '', 100000); 
     // TODO: тут необходимо удалить остальные Cookies.
   }
 
   // Сохранение в БД.
-  // ...
+  
 
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
