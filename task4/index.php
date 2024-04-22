@@ -32,13 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['year'] = !empty($_COOKIE['year_error']);
   // TODO: аналогично все поля.
 
+  if (empty($_POST['name']) || !preg_match('/^[a-zA-Zа-яА-Я\s]+$/', $_POST['name'])) {
+    $errors['fio'] = true;
+    setcookie('fio_error', 'Заполните имя.', time() + 100000, "/");
+}
   // Выдаем сообщения об ошибках.
-  if ($errors['fio']) {
+//  if ($errors['fio']) {
     // Удаляем куку, указывая время устаревания в прошлом.
-    setcookie('fio_error', '', 100000);
+  //  setcookie('fio_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
-  }
+    //$messages[] = '<div class="error">Заполните имя.</div>';
+  //}
 
   if ($errors['telephone']) {
     setcookie('telephone_error', '', 100000);
