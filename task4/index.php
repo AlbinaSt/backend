@@ -111,6 +111,7 @@ else {
 
   if (empty($_POST['year'])) {
     setcookie('year_error', '1', time() + 24 * 60 * 60);
+    setcookie('year_value', '', time() - 3600);
     $errors = TRUE;
   }
   else {
