@@ -73,7 +73,7 @@ if (!empty($messages)) {
       <br />
       Введите имя: <br /><input type="text" name="fio" value="<?php echo isset($_COOKIE['fio']) ? $_COOKIE['fio'] : ''; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
       <br />
-      Введите телефон: <br /> <input type="tel" name="telephone" value="<?php echo isset($_COOKIE['telephone']) ? $_COOKIE['telephone'] : ''; ?>" pattern="^\+?[0-9\s-]*" title="Введите корректный номер телефона" required>
+      Введите телефон: <br /> <input type="tel" name="telephone" value="<?php echo isset($_COOKIE['telephone']) ? $_COOKIE['telephone'] : ''; ?>" pattern="/^+?[0-9\s-]*$/" title="Введите корректный номер телефона" required>
       <br />
       Введите почту: <br /> <input type="email" name="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" title="Введите корректный email адрес" required>
       <br />
