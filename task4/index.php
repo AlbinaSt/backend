@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie('fio_error', 'Заполните имя.', time() + 100000, "/");
 }
   
-  if (empty($_POST['telephone']) || !preg_match('^\+?[0-9\s-]*', $_POST['telephone'])) {
+  if (empty($_POST['telephone']) || !preg_match('/^+?[0-9\s-]*$/', $_POST['telephone'])) {
     $errors['telephone'] = true;
     setcookie('telephone_error', 'Заполните номер телефона.', time() + 100000, "/");
 }
