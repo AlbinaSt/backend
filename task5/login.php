@@ -57,7 +57,7 @@ $values['password'] = empty($_COOKIE['password_value']) ? '' : strip_tags($_COOK
 ?>
 
 <body>
-<form action="" method="post">
+<form class="form" action="" method="post">
   <?php 
   if (!empty($messages)) {
   print('<div id="messages">');
