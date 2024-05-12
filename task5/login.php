@@ -24,6 +24,7 @@
     </style>
   </head>
 <?php     
+
 header('Content-Type: text/html; charset=UTF-8');
 
 $session_started = false;
@@ -40,6 +41,11 @@ if ($_COOKIE[session_name()] && session_start()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+      $errors = array();
+      $messages = array();
+      $errors['error'] = !empty($_COOKIE['error']);
+ 
+  if (!empty($errors['error'])) {
     setcookie('error', '', 100000);
     $messages[] = '<div class="error">Неверный логин или пароль</div>';
   }
