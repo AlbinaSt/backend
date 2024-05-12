@@ -1,5 +1,29 @@
 <?php
+ <head>
+    <title>Вход</title>
+    <style>
+.error {
+  border: 2px solid red;
+}
+      form {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
 
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+    </style>
+  </head>
+      
 header('Content-Type: text/html; charset=UTF-8');
 
 $session_started = false;
