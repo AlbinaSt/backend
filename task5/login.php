@@ -67,9 +67,9 @@ $values['password'] = empty($_COOKIE['password_value']) ? '' : strip_tags($_COOK
   print('</div>');
 }
 ?>
-  <input name="login" <?php if ($errors['error']) {print 'class="error"';} ?> value="<?php print $values['login']; ?>"/>
-  <input name="password" <?php if ($errors['error']) {print 'class="error"';} ?> value="<?php print $values['password']; ?>"/>
-  <input type="submit" value="Войти" />
+  Введите логин: </br> <input name="login" <?php if ($errors['error']) {print 'class="error"';} ?> value="<?php print $values['login']; ?>"/>
+  </br>Введите пароль: </br> <input name="password" <?php if ($errors['error']) {print 'class="error"';} ?> value="<?php print $values['password']; ?>"/>
+  </br><input type="submit" value="Войти" />
 </form>
   </body>
 </html>
