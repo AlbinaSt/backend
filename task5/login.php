@@ -23,7 +23,7 @@
   font-family:'Montserrat',sans-serif;position:relative}
     </style>
   </head>
-      
+<?php     
 header('Content-Type: text/html; charset=UTF-8');
 
 $session_started = false;
