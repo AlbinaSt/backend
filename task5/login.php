@@ -5,14 +5,13 @@
 .error {
   border: 2px solid red;
 }
-      form {
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
+ body{
+    background:#556B2F;
+    margin:0
+  }
+
+.form{
+  width:400px;height:auto;background:#e6e6e6;border-radius:8px;box-shadow:0 0 40px -10px #000; margin: calc(50vh - 220px) auto; padding:20px 30px;max-width:calc(100vw - 40px);box-sizing:border-box;font-family:'Montserrat',sans-serif;position:relative}
 
 input {
   width: 100%;
