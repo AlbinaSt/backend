@@ -360,6 +360,7 @@ while (in_array($login, $logins)) {
 
   // Делаем перенаправление.
   header('Location: ./');
+}
 	else
 {
 if ($_POST['button'] == "exit") {
