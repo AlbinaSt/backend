@@ -233,14 +233,14 @@ else {
     header('Location: index.php');
     exit();
   }
-  setcookie('fio_value', $_POST['name'], time() + 365 * 24 * 60 * 60);
-  setcookie('telephone_value', $_POST['phone'], time() + 365 * 24 * 60 * 60);
+  setcookie('fio_value', $_POST['fio'], time() + 365 * 24 * 60 * 60);
+  setcookie('telephone_value', $_POST['telephone'], time() + 365 * 24 * 60 * 60);
   setcookie('email_value', $_POST['email'], time() + 365 * 24 * 60 * 60);
-  setcookie('year_value', $_POST['data'], time() + 365 * 24 * 60 * 60);
-  setcookie('radio_value', $_POST['pol'], time() + 365 * 24 * 60 * 60);
+  setcookie('year_value', $_POST['year'], time() + 365 * 24 * 60 * 60);
+  setcookie('radio_value', $_POST['radio-1'], time() + 365 * 24 * 60 * 60);
   setcookie('abilities_value', serialize($_POST['abilities']), time() + 365 * 24 * 60 * 60);
-  setcookie('field_value', $_POST['bio'], time() + 365 * 24 * 60 * 60);
-  setcookie('check_value', $_POST['ok'], time() + 365 * 24 * 60 * 60);
+  setcookie('field_value', $_POST['field-name-2'], time() + 365 * 24 * 60 * 60);
+  setcookie('check_value', $_POST['check-1'], time() + 365 * 24 * 60 * 60);
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
