@@ -270,34 +270,34 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
     try
     {
-    $stmt = $db->prepare("SELECT userid  FROM users WHERE login = :login");
+    $stmt = $db->prepare("SELECT user_id  FROM users WHERE login = :login");
     $stmt->execute(['login' => $_SESSION['login']]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    $sql = "UPDATE application3 SET name = :name, phone = :phone, email = :email,  data = :data, pol = :pol, bio = :bio, ok = :ok WHERE userid = :userid";
+    $sql = "UPDATE application SET name = :name, phone = :phone, email = :email,  data = :data, pol = :pol, bio = :bio, ok = :ok WHERE user-id = :user_id";
     
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':name', $_POST['name']);
-    $stmt->bindParam(':phone', $_POST['phone']);
+    $stmt->bindParam(':name', $_POST['fio']);
+    $stmt->bindParam(':phone', $_POST['telephone']);
     $stmt->bindParam(':email', $_POST['email']);
-    $stmt->bindParam(':data', $_POST['data']);
-    $stmt->bindParam(':pol', $_POST['pol']);
-    $stmt->bindParam(':bio', $_POST['bio']);
-    $stmt->bindParam(':ok', $_POST['ok']);
-    $stmt->bindParam(':userid', $data['userid']);
+    $stmt->bindParam(':data', $_POST['year']);
+    $stmt->bindParam(':pol', $_POST['radio-1']);
+    $stmt->bindParam(':bio', $_POST['field-name-2']);
+    $stmt->bindParam(':ok', $_POST['check-1']);
+    $stmt->bindParam(':user_id', $data['user_id']);
     $stmt->execute();
       
-    $stmt_delete = $db->prepare("DELETE FROM ap_lan3 WHERE userid = :userid");
-    $stmt_delete->bindParam(':userid', $data['userid']);
+    $stmt_delete = $db->prepare("DELETE FROM application_languages WHERE user_id = :user_id");
+    $stmt_delete->bindParam(':user_id', $data['user_id']);
     $stmt_delete->execute();
   
        foreach ($_POST['abilities'] as $ability) {
-    $stmtLang = $db->prepare("SELECT id FROM language2 WHERE name = ?");
+    $stmtLang = $db->prepare("SELECT id FROM programming_language WHERE language_name = ?");
     $stmtLang->execute([$ability]);
     $languageId = $stmtLang->fetchColumn();
 
-    $stmtApLang = $db->prepare("INSERT INTO ap_lan3 (userid, id_language) VALUES (:UserId, :languageId)");
-    $stmtApLang->bindParam(':languageId', $languageId);
-    $stmtApLang->bindParam(':UserId', $data['userid']);
+    $stmtApLang = $db->prepare("INSERT INTO application_language (user_id, language_id) VALUES (:User_Id, :Id_language)");
+    $stmtApLang->bindParam(':Id_language', $Id_language);
+    $stmtApLang->bindParam(':User_Id', $data['user_id']);
     $stmtApLang->execute();
    
   }
@@ -310,12 +310,11 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
   else {
   include('../db.php');
 $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
-  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
-    // Генерируем уникальный логин и пароль.
-    $login = 'user_' . uniqid(); // Генерация уникального логина
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+    $login = 'user' . uniqid();
 try{
     // Запрос для выбора всех логинов из базы данных
-$statement = $db->prepare("SELECT login FROM application2");
+$statement = $db->prepare("SELECT login FROM application");
 $statement->execute();
 $logins = $statement->fetchAll(PDO::FETCH_COLUMN);
  }
@@ -323,35 +322,30 @@ $logins = $statement->fetchAll(PDO::FETCH_COLUMN);
       print('Error : ' . $e->getMessage());
       exit();
     }
-// Проверка уникальности сгенерированного логина
 while (in_array($login, $logins)) {
-    $login = 'user_' . uniqid(); // Генерация нового уникального логина
+    $login = 'user' . uniqid(); 
 }
-    $password = substr(md5(rand()), 0, 8); // Генерация уникального пароля
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    // Сохраняем в Cookies.
+    $password = substr(md5(rand()), 0, 8); 
+    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
     setcookie('login', $login, time() + 24 * 60 * 60);
     setcookie('pass', $password, time() + 24 * 60 * 60);
 
-    // TODO: Сохранение данных формы, логина и хеш md5() пароля в базу данных.
-
-    // Подготовленный запрос. Не именованные метки.
     try {
-      $stmt = $db->prepare("INSERT INTO application3 (name, phone, email, data, pol, bio, ok) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      $stmt->execute([$_POST['name'], $_POST['phone'], $_POST['email'], $_POST['data'], $_POST['pol'], $_POST['bio'], $_POST['ok']]);
+      $stmt = $db->prepare("INSERT INTO application (name, phone, email, data, pol, bio, ok) VALUES (?, ?, ?, ?, ?, ?, ?)");
+      $stmt->execute([$_POST['fio'], $_POST['telephone'], $_POST['email'], $_POST['year'], $_POST['radio-1'], $_POST['field-name-2'], $_POST['check-1']]);
       $UserId = $db->lastInsertId();
 
-      $stmt = $db->prepare("INSERT INTO users (userid, login, password) VALUES (?, ?, ?)");
-      $stmt->execute([$UserId, $login, $hashedPassword]);
+      $stmt = $db->prepare("INSERT INTO users (user_id, login, password) VALUES (?, ?, ?)");
+      $stmt->execute([$User_Id, $login, $hashPassword]);
 
       foreach ($_POST['abilities'] as $ability) {
-    $stmtLang = $db->prepare("SELECT id FROM language2 WHERE name = ?");
+    $stmtLang = $db->prepare("SELECT id FROM programming_languages WHERE language_name = ?");
     $stmtLang->execute([$ability]);
     $languageId = $stmtLang->fetchColumn();
 
-    $stmtApLang = $db->prepare("INSERT INTO ap_lan3 (userid, id_language) VALUES (:UserId, :languageId)");
-    $stmtApLang->bindParam(':languageId', $languageId);
-    $stmtApLang->bindParam(':UserId', $UserId);
+    $stmtApLang = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (:User_Id, :Id_language)");
+    $stmtApLang->bindParam(':Id_language', $Id_language);
+    $stmtApLang->bindParam(':User_Id', $User_Id);
     $stmtApLang->execute();
 }
     }
@@ -370,14 +364,14 @@ while (in_array($login, $logins)) {
 {
 if ($_POST['button'] == "exit") {
   setcookie('logout', 'exit', time() + 24 * 60 * 60);
-  setcookie('name_value', '', 100000);
-  setcookie('phone_value', '', 100000);
+  setcookie('fio_value', '', 100000);
+  setcookie('telephone_value', '', 100000);
   setcookie('email_value', '', 100000);
-  setcookie('data_value','', 100000);
-  setcookie('pol_value', '', 100000);
+  setcookie('year_value','', 100000);
+  setcookie('radio_value', '', 100000);
   setcookie('abilities_value', '', 100000);
-  setcookie('bio_value', '', 100000);
-  setcookie('ok_value', '', 100000);
+  setcookie('field_value', '', 100000);
+  setcookie('check_value', '', 100000);
   header('Location: login.php');
   exit();
 }
