@@ -280,7 +280,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $stmtLang->execute([$ability]);
     $languageId = $stmtLang->fetchColumn();
 
-    $stmtApLang = $db->prepare("INSERT INTO application_language (user_id, language_id) VALUES (:User_Id, :Id_language)");
+    $stmtApLang = $db->prepare("INSERT INTO application_language (application_id, language_id) VALUES (:User_Id, :Id_language)");
     $stmtApLang->bindParam(':Id_language', $Id_language);
     $stmtApLang->bindParam(':User_Id', $data['user_id']);
     $stmtApLang->execute();
