@@ -101,12 +101,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $languages = [];
     foreach ($rows as $row) {
-        $languages[] = htmlspecialchars($row['name']);
+        $languages[] = htmlspecialchars($row['fio']);
     }
 
     $abilities_serialized = serialize($languages);
     
-    $stmt = $db->prepare("SELECT name, phone, email, data, pol, bio, ok  FROM application WHERE user_id = :user_id");
+    $stmt = $db->prepare("SELECT name, phone, email, data, pol, bio, ok  FROM application WHERE application_id = :user_id");
     $stmt->execute(['user_id' => $data['user_id']]);
     $row = $stmt->fetch();
 
@@ -341,7 +341,7 @@ while (in_array($login, $logins)) {
 
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
-
+ 
   // Делаем перенаправление.
   header('Location: ./');
 }
