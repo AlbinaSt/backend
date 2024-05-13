@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $stmt->execute(['login' => $_SESSION['login']]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    $stmt = $db->prepare("SELECT l.language_id
+    $stmt = $db->prepare("SELECT l.language_name
     FROM application_languages AS a JOIN programming_languages AS l ON a.language_id = l.id WHERE a.application_id = :user_id");
     $stmt->execute(['user_id' => $data['user_id']]);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
