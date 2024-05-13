@@ -257,51 +257,107 @@ else {
     setcookie('abilities_error', '', 100000);
     setcookie('field_error', '', 100000);
     setcookie('check_error', '', 100000); 
-    // TODO: тут необходимо удалить остальные Cookies.
   }
 
+
+
+	
   // Проверяем меняются ли ранее сохраненные данные или отправляются новые.
   if (!empty($_COOKIE[session_name()]) &&
       session_start() && !empty($_SESSION['login'])) {
-    // TODO: перезаписать данные в БД новыми данными,
-    // кроме логина и пароля.
+          include('../db.php');
+$db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+    try
+    {
+    $stmt = $db->prepare("SELECT userid  FROM users WHERE login = :login");
+    $stmt->execute(['login' => $_SESSION['login']]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "UPDATE application3 SET name = :name, phone = :phone, email = :email,  data = :data, pol = :pol, bio = :bio, ok = :ok WHERE userid = :userid";
+    
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':name', $_POST['name']);
+    $stmt->bindParam(':phone', $_POST['phone']);
+    $stmt->bindParam(':email', $_POST['email']);
+    $stmt->bindParam(':data', $_POST['data']);
+    $stmt->bindParam(':pol', $_POST['pol']);
+    $stmt->bindParam(':bio', $_POST['bio']);
+    $stmt->bindParam(':ok', $_POST['ok']);
+    $stmt->bindParam(':userid', $data['userid']);
+    $stmt->execute();
+      
+    $stmt_delete = $db->prepare("DELETE FROM ap_lan3 WHERE userid = :userid");
+    $stmt_delete->bindParam(':userid', $data['userid']);
+    $stmt_delete->execute();
+  
+       foreach ($_POST['abilities'] as $ability) {
+    $stmtLang = $db->prepare("SELECT id FROM language2 WHERE name = ?");
+    $stmtLang->execute([$ability]);
+    $languageId = $stmtLang->fetchColumn();
+
+    $stmtApLang = $db->prepare("INSERT INTO ap_lan3 (userid, id_language) VALUES (:UserId, :languageId)");
+    $stmtApLang->bindParam(':languageId', $languageId);
+    $stmtApLang->bindParam(':UserId', $data['userid']);
+    $stmtApLang->execute();
+   
+  }
+}
+	    catch(PDOException $e){
+      print('Error : ' . $e->getMessage());
+      exit();
+    }
   }
   else {
-    $length = 8;
-    $chars = 'qazxswedcvfrtgbnhyujmkiolp1234567890QAZXSWEDCVFRTGBNHYUJMKIOLP'; 
-	  $size = strlen($chars) - 1; 
-	  $pass = ''; 
-	  while($length--) {
-	   	$pass .= $chars[random_int(0, $size)]; 
-    $login .= $chars[random_int(0, $size)]; 
+  include('../db.php');
+$db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
+    // Генерируем уникальный логин и пароль.
+    $login = 'user_' . uniqid(); // Генерация уникального логина
+try{
+    // Запрос для выбора всех логинов из базы данных
+$statement = $db->prepare("SELECT login FROM application2");
+$statement->execute();
+$logins = $statement->fetchAll(PDO::FETCH_COLUMN);
+ }
+    catch(PDOException $e){
+      print('Error : ' . $e->getMessage());
+      exit();
     }
+// Проверка уникальности сгенерированного логина
+while (in_array($login, $logins)) {
+    $login = 'user_' . uniqid(); // Генерация нового уникального логина
+}
+    $password = substr(md5(rand()), 0, 8); // Генерация уникального пароля
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     // Сохраняем в Cookies.
-    setcookie('login', $login);
-    setcookie('pass', $pass);
+    setcookie('login', $login, time() + 24 * 60 * 60);
+    setcookie('pass', $password, time() + 24 * 60 * 60);
 
+    // TODO: Сохранение данных формы, логина и хеш md5() пароля в базу данных.
+
+    // Подготовленный запрос. Не именованные метки.
     try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?, phone = ?, email = ?, data = ?, pol = ?, bio = ?, ok = ?");
-  $stmt->execute([$_POST['fio'], $_POST['telephone'], $_POST['email'], $_POST['year'], $_POST['radio-1'], $_POST['field-name-2'], $_POST['check-1']]);
-  $application_id = $db->lastInsertId();
+      $stmt = $db->prepare("INSERT INTO application3 (name, phone, email, data, pol, bio, ok) VALUES (?, ?, ?, ?, ?, ?, ?)");
+      $stmt->execute([$_POST['name'], $_POST['phone'], $_POST['email'], $_POST['data'], $_POST['pol'], $_POST['bio'], $_POST['ok']]);
+      $UserId = $db->lastInsertId();
+
+      $stmt = $db->prepare("INSERT INTO users (userid, login, password) VALUES (?, ?, ?)");
+      $stmt->execute([$UserId, $login, $hashedPassword]);
+
+      foreach ($_POST['abilities'] as $ability) {
+    $stmtLang = $db->prepare("SELECT id FROM language2 WHERE name = ?");
+    $stmtLang->execute([$ability]);
+    $languageId = $stmtLang->fetchColumn();
+
+    $stmtApLang = $db->prepare("INSERT INTO ap_lan3 (userid, id_language) VALUES (:UserId, :languageId)");
+    $stmtApLang->bindParam(':languageId', $languageId);
+    $stmtApLang->bindParam(':UserId', $UserId);
+    $stmtApLang->execute();
 }
-catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  exit();
-}
-
-foreach ($_POST['abilities'] as $language) {
-
-  $stmt = $db->prepare("SELECT id FROM programming_languages WHERE language_name = ?");
-    $stmt->execute([$language]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($result) {
-        $language_id = $result['id'];
-      $stmt = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
-        $stmt->execute([$application_id, $language_id]);
-    } else {
-        echo "Язык программирования '$language' не найден в базе данных.";
     }
+    catch(PDOException $e){
+      print('Error : ' . $e->getMessage());
+      exit();
 }
   }
 
@@ -310,4 +366,21 @@ foreach ($_POST['abilities'] as $language) {
 
   // Делаем перенаправление.
   header('Location: ./');
+	else
+{
+if ($_POST['button'] == "exit") {
+  setcookie('logout', 'exit', time() + 24 * 60 * 60);
+  setcookie('name_value', '', 100000);
+  setcookie('phone_value', '', 100000);
+  setcookie('email_value', '', 100000);
+  setcookie('data_value','', 100000);
+  setcookie('pol_value', '', 100000);
+  setcookie('abilities_value', '', 100000);
+  setcookie('bio_value', '', 100000);
+  setcookie('ok_value', '', 100000);
+  header('Location: login.php');
+  exit();
+}
+  }
+}
 }
