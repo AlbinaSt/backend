@@ -346,20 +346,5 @@ while (in_array($login, $logins)) {
   // Делаем перенаправление.
   header('Location: ./');
 }
-	else
-{
-if ($_POST['button'] == "exit") {
-  setcookie('logout', 'exit', time() + 24 * 60 * 60);
-  setcookie('fio_value', '', 100000);
-  setcookie('telephone_value', '', 100000);
-  setcookie('email_value', '', 100000);
-  setcookie('year_value','', 100000);
-  setcookie('radio_value', '', 100000);
-  setcookie('abilities_value', '', 100000);
-  setcookie('field_value', '', 100000);
-  setcookie('check_value', '', 100000);
-  header('Location: login.php');
-  exit();
-}
   }
 }
