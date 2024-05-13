@@ -318,10 +318,10 @@ while (in_array($login, $logins)) {
     try {
       $stmt = $db->prepare("INSERT INTO application (name, phone, email, data, pol, bio, ok) VALUES (?, ?, ?, ?, ?, ?, ?)");
       $stmt->execute([$_POST['fio'], $_POST['telephone'], $_POST['email'], $_POST['year'], $_POST['radio-1'], $_POST['field-name-2'], $_POST['check-1']]);
-      $UserId = $db->lastInsertId();
+      $User_Id = $db->lastInsertId();
 
       $stmt = $db->prepare("INSERT INTO users (user_id, login, password) VALUES (?, ?, ?)");
-      $stmt->execute([$user_id, $login, $hashPassword]);
+      $stmt->execute([$User_Id, $login, $hashPassword]);
 
       foreach ($_POST['abilities'] as $ability) {
     $stmtLang = $db->prepare("SELECT id FROM programming_languages WHERE language_name = ?");
