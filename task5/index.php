@@ -258,7 +258,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $stmt = $db->prepare("SELECT user_id  FROM users WHERE login = :login");
     $stmt->execute(['login' => $_SESSION['login']]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
-    $sql = "UPDATE application SET name = :name, phone = :phone, email = :email,  data = :data, pol = :pol, bio = :bio, ok = :ok WHERE user-id = :user_id";
+    $sql = "UPDATE application SET name = :name, phone = :phone, email = :email,  data = :data, pol = :pol, bio = :bio, ok = :ok WHERE id = :user_id";
     
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':name', $_POST['fio']);
@@ -271,7 +271,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $stmt->bindParam(':user_id', $data['user_id']);
     $stmt->execute();
       
-    $stmt_delete = $db->prepare("DELETE FROM application_languages WHERE user_id = :user_id");
+    $stmt_delete = $db->prepare("DELETE FROM application_languages WHERE application_id = :user_id");
     $stmt_delete->bindParam(':user_id', $data['user_id']);
     $stmt_delete->execute();
   
@@ -299,7 +299,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $login = 'user' . uniqid();
 try{
     // Запрос для выбора всех логинов из базы данных
-$statement = $db->prepare("SELECT login FROM application");
+$statement = $db->prepare("SELECT login FROM users");
 $statement->execute();
 $logins = $statement->fetchAll(PDO::FETCH_COLUMN);
  }
