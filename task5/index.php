@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
     
     $stmt = $db->prepare("SELECT l.name
-    FROM application_languages AS a JOIN programming_language AS l ON a.language_id = l.id WHERE a.application_id = :user_id");
+    FROM application_languages AS a JOIN programming_languages AS l ON a.language_id = l.id WHERE a.application_id = :user_id");
     $stmt->execute(['user_id' => $data['user_id']]);
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $languages = [];
@@ -275,7 +275,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $stmt_delete->execute();
   
        foreach ($_POST['abilities'] as $ability) {
-    $stmtLang = $db->prepare("SELECT id FROM programming_language WHERE language_name = ?");
+    $stmtLang = $db->prepare("SELECT id FROM programming_languages WHERE language_name = ?");
     $stmtLang->execute([$ability]);
     $languageId = $stmtLang->fetchColumn();
 
