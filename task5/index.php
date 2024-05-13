@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $languages = [];
     foreach ($rows as $row) {
-        $languages[] = htmlspecialchars($row['fio']);
+        $languages[] = htmlspecialchars($row['language_name']);
     }
 
     $abilities_serialized = serialize($languages);
