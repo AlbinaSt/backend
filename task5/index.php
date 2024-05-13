@@ -321,7 +321,7 @@ while (in_array($login, $logins)) {
       $UserId = $db->lastInsertId();
 
       $stmt = $db->prepare("INSERT INTO users (user_id, login, password) VALUES (?, ?, ?)");
-      $stmt->execute([$User_Id, $login, $hashPassword]);
+      $stmt->execute([$user_id, $login, $hashPassword]);
 
       foreach ($_POST['abilities'] as $ability) {
     $stmtLang = $db->prepare("SELECT id FROM programming_languages WHERE language_name = ?");
