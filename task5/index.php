@@ -1,12 +1,6 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
-<style>
-	.a {
-	font-size: 25px;
-        text-aligh: center;
-	}
-	</ style>
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   
