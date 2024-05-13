@@ -128,7 +128,6 @@ if (!empty($messages)) {
       <br />
       <input type="submit" value="ok" />
     <br />
-    <button type="submit" style = "margin-top:20px;" name="button"  value="exit">Выход</button>
     </form>
   </body>
 </html>
