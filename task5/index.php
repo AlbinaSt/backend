@@ -281,7 +281,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $languageId = $stmtLang->fetchColumn();
 
     $stmtApLang = $db->prepare("INSERT INTO application_language (application_id, language_id) VALUES (:User_Id, :Id_language)");
-    $stmtApLang->bindParam(':Id_language', $Id_language);
+    $stmtApLang->bindParam(':Id_language', $languageId);
     $stmtApLang->bindParam(':User_Id', $data['user_id']);
     $stmtApLang->execute();
    
@@ -329,7 +329,7 @@ while (in_array($login, $logins)) {
     $languageId = $stmtLang->fetchColumn();
 
     $stmtApLang = $db->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (:User_Id, :Id_language)");
-    $stmtApLang->bindParam(':Id_language', $Id_language);
+    $stmtApLang->bindParam(':Id_language', $languageId);
     $stmtApLang->bindParam(':User_Id', $User_Id);
     $stmtApLang->execute();
 }
