@@ -77,7 +77,7 @@ if (!empty($messages)) {
       <br />
       Введите почту: <br /> <input type="email" name="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" title="Введите корректный email адрес" required>
       <br />
-      Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php  echo isset($_COOKIE['fio']) ? $_COOKIE['fio'] : ''; ?>"
+      Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php  echo isset($_COOKIE['year']) ? $_COOKIE['year'] : ''; ?>"
       <br />
       <label>
         Ваш пол:</label>
