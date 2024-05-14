@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $abilities_serialized = serialize($languages);
     
-    $stmt = $db->prepare("SELECT name, phone, email, data, pol, bio, ok  FROM application WHERE application_id = :user_id");
+    $stmt = $db->prepare("SELECT name, phone, email, data, pol, bio, ok  FROM application WHERE id = :user_id");
     $stmt->execute(['user_id' => $data['user_id']]);
     $row = $stmt->fetch();
 
@@ -270,7 +270,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
     $stmt->bindParam(':user_id', $data['user_id']);
     $stmt->execute();
       
-    $stmt_delete = $db->prepare("DELETE FROM application_languages WHERE application_id = :user_id");
+    $stmt_delete = $db->prepare("DELETE FROM application_languages WHERE id = :user_id");
     $stmt_delete->bindParam(':user_id', $data['user_id']);
     $stmt_delete->execute();
   
