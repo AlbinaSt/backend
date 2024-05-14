@@ -111,13 +111,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $row = $stmt->fetch();
 
            $values = [
-        'name' => htmlspecialchars($row['fio']),
-        'phone' => htmlspecialchars($row['telephone']),
+        'name' => htmlspecialchars($row['name']),
+        'phone' => htmlspecialchars($row['phone']),
         'email' => htmlspecialchars($row['email']),
-        'data' => htmlspecialchars($row['year']),
-        'pol' => htmlspecialchars($row['radio-1']),
-        'bio' => htmlspecialchars($row['field-name-2']),
-        'ok' => htmlspecialchars($row['check-1']),
+        'data' => htmlspecialchars($row['data']),
+        'pol' => htmlspecialchars($row['pol']),
+        'bio' => htmlspecialchars($row['bio']),
+        'ok' => htmlspecialchars($row['ok']),
         'abilities' => $languages
     ];
   }
