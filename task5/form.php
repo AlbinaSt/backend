@@ -79,6 +79,7 @@ if (!empty($messages)) {
       <br />
       Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php  echo isset($_COOKIE['year']) ? $_COOKIE['year'] : ''; ?>"
       <br />
+    <br />
       <label>
         Ваш пол:</label>
         <br />
