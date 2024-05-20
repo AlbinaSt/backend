@@ -38,7 +38,7 @@ function executeQuery($query, $default = FALSE) {
     }
 }
 
-function result_date($query) {
+function result($query) {
   global $db;
   $stmt = $db->prepare($query);
   $args = func_get_args();
