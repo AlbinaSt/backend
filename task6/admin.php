@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         if(!empty($_POST['delete']))
     {
-    $id = $_POST['delete'];
-    $result = get_user_id($id);
+    $user_id = $_POST['delete'];
+    $result = get_user_id($user_id);
 
 if ($result) {
-    $result = delete_by_id($id);
+    $result = delete_by_id($user_id);
     echo "Данные успешно удалены. <br>";
     header('Location: admin.php');
     exit();
