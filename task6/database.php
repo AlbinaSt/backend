@@ -188,77 +188,45 @@ function get_logins() {
 
 function set_application($id, $name, $phone, $email, $data, $pol, $bio, $ok, $abilities) {
  $errors = FALSE;
-  if (empty($name)) {
-    // Выдаем куку на день с флажком об ошибке в поле name.
-    setcookie('name_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }elseif (!preg_match('/^[\p{L}\s]+$/u', $name)) {
-    setcookie('name_error_len', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-} elseif (strlen($name) > 150) {
-    setcookie('name_error_struct', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
+   if (empty($_POST['fio']) || !preg_match('/^[a-zA-Zа-яА-Я\s]+$/', $_POST['fio'])) {
+    $errors['fio'] = true;
+    setcookie('fio_error', 'Заполните имя.', time() + 100000, "/");
 }
-  if (empty($phone)) {
-    setcookie('phone_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-} elseif (!preg_match('/^\d+$/', $phone)) {
-    setcookie('phone_error_struct', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-}elseif (strlen($phone) > 11) {
-    setcookie('phone_error_len', '1', time() + 24 * 60 * 60);
-            $errors = TRUE;
-        }
-  if (empty($email)) {
-    setcookie('email_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    setcookie('email_error_struct', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-}elseif (strlen($email) > 150) {
-    setcookie('email_error_len', '1', time() + 24 * 60 * 60);
-            $errors = TRUE;
-        }
-if (empty($pol)) {
-    setcookie('pol_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-} elseif ($pol !== 'W' && $pol !== 'M') {
-    setcookie('pol_error_struct', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
+  
+  if (empty($_POST['telephone']) || !preg_match('/^+?[0-9\s-]*$/', $_POST['telephone'])) {
+    $errors['telephone'] = true;
+    setcookie('telephone_error', 'Заполните номер телефона.', time() + 100000, "/");
 }
-if ($ok !== 'on') {
-    setcookie('ok_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-}
-  if (empty($data)) {
-    setcookie('data_error', '1', time() + 24 * 60 * 60);
-  $errors = TRUE;
-} elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data)) {
-    setcookie('data_error_struct', '1', time() + 24 * 60 * 60);
-  $errors = TRUE;
-}
-$allowed_languages = array("Pascal", "C", "C++", "JavaScript", "PHP", "Python", "Java", "Haskel");
 
-if (empty($abilities)) {
-    setcookie('abilities_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-} else {
-    foreach ($abilities as $language) {
-        if (!in_array($language, $allowed_languages)) {
-    setcookie('abilities_error_struct', '1', time() + 24 * 60 * 60);
-            $errors = TRUE;
-            break;
-        }
-    }
-}
-if (empty($bio)) {
-    setcookie('bio_error', '1', time() + 24 * 60 * 60);
-  $errors = TRUE;
-}elseif (strlen($bio) > 300) {
-    setcookie('bio_error_len', '1', time() + 24 * 60 * 60);
-            $errors = TRUE;
-        }
+  if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    $errors['email'] = true;
+    setcookie('email_error', 'Введите корректный email адрес.', time() + 100000, "/");
+} 
 
+   if ($errors['year']) {
+    setcookie('year_error', '', 100000);
+    $messages[] = '<div class="error">Введите дату рождения.</div>';
+  }
+
+   if ($errors['radio-1']) {
+    setcookie('radio_error', '', 100000);
+    $messages[] = '<div class="error">Выберите пол.</div>';
+  }
+
+   if ($errors['abilities']) {
+    setcookie('abilities_error', '', 100000);
+    $messages[] = '<div class="error">Выберите языки.</div>';
+  }
+
+  if ($errors['field-name-2']) {
+    setcookie('field_error', '', 100000);
+    $messages[] = '<div class="error">Введите биографию.</div>';
+  }
+
+   if ($errors['check-1']) {
+    setcookie('check_error', '', 100000);
+    $messages[] = '<div class="error">Необходимо согласие.</div>';
+  }
   
 if($errors == TRUE) 
 {
@@ -277,7 +245,7 @@ else{
     setcookie('login', $login, time() + 24 * 60 * 60);
     setcookie('pass', $password, time() + 24 * 60 * 60);
 
-    $q1 = db_command("INSERT INTO application (name, phone, email, data, pol, bio, ok) VALUES (?, ?, ?, ?, ?, ?, ?)", $name, $phone, $email, $data, $pol, $bio, $ok);
+    $q1 = command("INSERT INTO application (name, phone, email, data, pol, bio, ok) VALUES (?, ?, ?, ?, ?, ?, ?)", $fio, $telephone, $email, $year, $radio-1, $field-name-2, $check-1);
     if($q1 <= 0) 
     {
       return FALSE;
@@ -291,7 +259,7 @@ else{
         }
   }
   else {
-     $q1 = db_command("UPDATE application SET name = ?, phone = ?, email = ?,  data = ?, pol = ?, bio = ?, ok = ? WHERE user_id = ?", $name, $phone, $email, $data, $pol, $bio, $ok, $userid);
+     $q1 = db_command("UPDATE application SET name = ?, phone = ?, email = ?,  data = ?, pol = ?, bio = ?, ok = ? WHERE id = ?", $name, $phone, $email, $data, $pol, $bio, $ok, $userid);
       if($q1 <= 0) 
     {
       return FALSE;
