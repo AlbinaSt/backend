@@ -64,7 +64,7 @@ else {
 $results = get_all_user();
 
     foreach ($results as $row) {
-        echo "Пользователь с login " . $row['login'] ." и id ". $row['user_id'] . "<br>";
+        echo "Пользователь с login " . $row['login'] ." и id ". $row['id'] . "<br>";
         echo "Name: " . $row['name'] . "<br>";
         echo "Telephone: " . $row['phone'] . "<br>";
         echo "Email: " . $row['email'] . "<br>";
@@ -83,6 +83,6 @@ $results = get_all_user();
 
  $languages = get_status_language();
     foreach ($languages as $row) {
-        echo "{$row['name']} язык любят: {$row['count_users']} пользователя <br>";
+        echo "{$row['abilities']} язык любят: {$row['count_users']} пользователя <br>";
     }
 ?>
