@@ -6,7 +6,7 @@ $db = new PDO('mysql:host=localhost;dbname=' . $db_name, $db_login, $db_pass,
 
 
 
-function row_date($stmt) {
+function row($stmt) {
   return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
