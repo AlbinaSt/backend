@@ -74,7 +74,7 @@ $results = get_all_user();
         echo "Ok: " . $row['ok'] . "<br>";
         echo "Languages: " . $row['languages'] . "<br><br>";
     }
-    echo "Статистика языков " . "<br>";
+    echo "Статистика языков: " . "<br />";
     $query = "SELECT l.language_name, count(*) AS count_users
             FROM application a 
             INNER JOIN application_languages al ON a.id = al.application_id
