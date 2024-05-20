@@ -126,7 +126,7 @@ function get_Login($user_id, $default = FALSE) {
 }
 
 function get_pass_login($default = FALSE) {
-  $value = db_result("SELECT login, password FROM admin");
+  $value = result("SELECT login, password FROM admin");
     if (!$value) {
           return $default;
   }
