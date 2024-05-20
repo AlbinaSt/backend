@@ -69,7 +69,7 @@ function insert_id() {
 }
 
 function get_all_user($default = FALSE) {
-  $query = "SELECT a.id, a.name, a.phone, a.email, a.data, a.pol, a.bio, a.ok, u.login, GROUP_CONCAT(DISTINCT l2.name SEPARATOR ', ') as languages
+  $query = "SELECT a.id, a.name, a.phone, a.email, a.data, a.pol, a.bio, a.ok, u.login, GROUP_CONCAT(DISTINCT l.language_name SEPARATOR ', ') as languages
                         FROM application a
                         INNER JOIN users u ON a.id = u.user_id
                         LEFT JOIN application_languages al ON a.id = al.application_id
