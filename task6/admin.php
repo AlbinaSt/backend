@@ -1,21 +1,7 @@
 <?php
 
-if (empty($_SERVER['PHP_AUTH_USER']) ||
-    empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    md5($_SERVER['PHP_AUTH_PW']) != md5('123')) {
-  header('HTTP/1.1 401 Unanthorized');
-  header('WWW-Authenticate: Basic realm="My site"');
-  print('<h1>401 Требуется авторизация</h1>');
-  exit();
-}
+require_once('database.php'); 
 
-print('Вы успешно авторизовались и видите защищенные паролем данные.');
-
-<?php
-require_once('database.php');   
-    
-<?php
 function checkAuth() {
  $row = db_get_Pass_Login();
 if (empty($_SERVER['PHP_AUTH_USER']) ||
@@ -29,9 +15,11 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 }
 checkAuth();
+
+print('Вы успешно авторизовались и видите защищенные паролем данные.');
+
 ?>
-echo 'Вы успешно авторизовались и видите защищенные паролем данные.'."<br>"; 
-?>
+
     <form action="" method="POST">
             <input name="delete"/>
           <input type="submit" name = "button" value="Delete" />
