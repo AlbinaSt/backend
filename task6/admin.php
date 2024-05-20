@@ -83,6 +83,6 @@ $results = get_all_user();
 
  $languages = get_status_language();
     foreach ($languages as $row) {
-        echo "{$row['abilities']} язык любят: {$row['count_users']} пользователя <br>";
+        echo "{$row['language_name']} язык любят: {$row['count_users']} пользователя <br>";
     }
 ?>
