@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Задача 6. Реализовать вход администратора с использованием
- * HTTP-авторизации для просмотра и удаления результатов.
- **/
-
-// Пример HTTP-аутентификации.
-// PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
-// Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
@@ -19,13 +11,6 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
-
-// *********
-// Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
-// Реализовать просмотр и удаление всех данных.
-// *********
-
-
 
 <?php
 require_once('database.php');   
@@ -46,20 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         if(!empty($_POST['delete']))
     {
     $user_id = $_POST['delete'];
-    $result = db_get_UserId($user_id);
+    $result = get_user_id($id);
 
 if ($result) {
-    $result = db_delete_by_id($userid);
+    $result = delete_by_id($id);
     echo "Данные успешно удалены. <br>";
     header('Location: admin.php');
     exit();
 }
 else {
-    echo "userid не найден в базе данных. <br>";
+    echo "Id не найден в базе данных. <br>";
 }
     }
     else{
-            echo "заполните userid <br>";
+            echo "Заполните id <br>";
         }
     }
         if($_POST['button'] == "Update")
@@ -68,9 +53,9 @@ else {
         {
         session_start();
       $userid = $_POST['update'];
-    $result = db_get_UserId($userid);
+    $result = get_user_id($id);
     if ($result) {
-    $data = db_get_Login($userid);
+    $data = get_login($user_id);
     $_SESSION['login'] = $data['login'];
 
     $_SESSION['uid'] = $userid;
@@ -78,21 +63,20 @@ else {
         exit();
     }
     else {
-    echo "userid не найден в базе данных. <br>";
+    echo "Id не найден в базе данных. <br>";
 }
     }
         else{
-            echo "заполните userid <br>";
+            echo "Заполните id <br>";
         }
     }
 }
-$results = db_get_Alluser();
+$results = get_all_user();
 
-    // Вывод данных
     foreach ($results as $row) {
-        echo "Пользователь с login " . $row['login'] ." и id ". $row['userid'] . "<br>";
+        echo "Пользователь с login " . $row['login'] ." и id ". $row['user_id'] . "<br>";
         echo "Name: " . $row['name'] . "<br>";
-        echo "Phone: " . $row['phone'] . "<br>";
+        echo "Telephone: " . $row['phone'] . "<br>";
         echo "Email: " . $row['email'] . "<br>";
         echo "Data: " . $row['data'] . "<br>";
         echo "Gender: " . $row['pol'] . "<br>";
@@ -101,14 +85,13 @@ $results = db_get_Alluser();
         echo "Languages: " . $row['languages'] . "<br><br>";
     }
     echo "Статистика языков " . "<br>";
-    $query = "SELECT l2.name, count(*) AS count_users
-            FROM application3 a 
-            INNER JOIN ap_lan3 al3 ON a.userid = al3.userid
-            INNER JOIN language2 l2 ON al3.id_language = l2.id
-            GROUP BY l2.name";
+    $query = "SELECT l.language_name, count(*) AS count_users
+            FROM application a 
+            INNER JOIN application_languages al ON a.id = al.application_id
+            INNER JOIN programming_languages l ON al.language_id = l.id
+            GROUP BY l.language_name";
 
- $languages = db_get_StatusLanguage();
-    // Вывод результатов
+ $languages = get_status_language();
     foreach ($languages as $row) {
         echo "{$row['name']} язык любят: {$row['count_users']} пользователя <br>";
     }
