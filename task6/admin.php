@@ -65,13 +65,13 @@ $results = get_all_user();
 
     foreach ($results as $row) {
         echo "Пользователь с login " . $row['login'] ." и id ". $row['id'] . "<br>";
-        echo "Name: " . $row['name'] . "<br>";
+        echo "Full name: " . $row['name'] . "<br>";
         echo "Telephone: " . $row['phone'] . "<br>";
         echo "Email: " . $row['email'] . "<br>";
-        echo "Data: " . $row['data'] . "<br>";
+        echo "Date: " . $row['data'] . "<br>";
         echo "Gender: " . $row['pol'] . "<br>";
-        echo "Bio: " . $row['bio'] . "<br>";
-        echo "Ok: " . $row['ok'] . "<br>";
+        echo "Biography: " . $row['bio'] . "<br>";
+        echo "Agreement: " . $row['ok'] . "<br>";
         echo "Languages: " . $row['languages'] . "<br><br>";
     }
     echo "Статистика языков: " . "<br />";
