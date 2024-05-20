@@ -42,13 +42,13 @@ else {
         if(!empty($_POST['update']))
         {
         session_start();
-      $userid = $_POST['update'];
-    $result = get_user_id($id);
+      $user_id = $_POST['update'];
+    $result = get_user_id($user_id);
     if ($result) {
     $data = get_login($user_id);
     $_SESSION['login'] = $data['login'];
 
-    $_SESSION['uid'] = $userid;
+    $_SESSION['uid'] = $user_id;
     header('Location: index.php');
         exit();
     }
