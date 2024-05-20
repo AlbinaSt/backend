@@ -3,7 +3,7 @@
 require_once('database.php'); 
 require_once('authorization.php');
 
-print('Вы успешно авторизовались.');
+print('Вы успешно авторизовались и видите защищенные паролем данные.');
 
 ?>
 
