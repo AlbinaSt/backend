@@ -111,8 +111,8 @@ function get_user_id($user_id) {
 
 function delete_by_id($user_id) {
   $value1 = query_data("DELETE FROM users WHERE user_id = ?", $user_id);
-  $value2 = query_data("DELETE FROM application_languages WHERE user_id = ?", $user_id);
-  $value3 = query_data("DELETE FROM application WHERE user_id = ?", $user_id);
+  $value2 = query_data("DELETE FROM application_languages WHERE application_id = ?", $user_id);
+  $value3 = query_data("DELETE FROM application WHERE id = ?", $user_id);
 }
 
 function get_Login($user_id, $default = FALSE) {
