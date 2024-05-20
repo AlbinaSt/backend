@@ -15,7 +15,7 @@ function row_all($stmt) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function query_date($query) {
+function query_data($query) {
   global $db;
   $stmt = $db->prepare($query);
   $args = func_get_args();
@@ -32,7 +32,7 @@ function executeQuery($query, $default = FALSE) {
     global $db;
     $result = $db->query($query);
     if ($result) {
-        return row_All($result);
+        return row_all($result);
     } else {
         return $defaul;
     }
@@ -45,7 +45,7 @@ function result_date($query) {
   array_shift($args);
   $res = $stmt->execute($args);
   if ($res) {
-    if ($row = db_row($stmt)) {
+    if ($row = row($stmt)) {
       return $row;
     }
     }
@@ -75,7 +75,7 @@ function get_all_user($default = FALSE) {
                         LEFT JOIN application_languages al ON a.id = al.application_id
                         LEFT JOIN programming_languages l ON al.language_id = l.id
                         GROUP BY a.id, a.name, a.phone, a.email, a.data, a.pol, a.bio, a.ok, u.login";
-  $value = db_query($query);
+  $value = query_data($query);
   if (!$value) {
     return $default;
   }
@@ -90,7 +90,7 @@ $query = "SELECT l.language_name, count(*) AS count_users
             INNER JOIN application_languages al ON a.id = al.application_id
             INNER JOIN programming_languages l ON al.language_id = l.id
             GROUP BY l.language_name";
-  $value = db_query($query);
+  $value = query_data($query);
   if (!$value) {
     return $default;
   }
@@ -100,7 +100,7 @@ $query = "SELECT l.language_name, count(*) AS count_users
 }
 
 function get_user_id($user_id) {
-  $value = db_query("SELECT user_id FROM users WHERE user_id = ?", $user_id);
+  $value = query_data("SELECT user_id FROM users WHERE user_id = ?", $user_id);
   if ($value == FALSE) {
     return FALSE;
   }
@@ -110,13 +110,13 @@ function get_user_id($user_id) {
 }
 
 function delete_by_id($user_id) {
-  $value1 = db_query("DELETE FROM users WHERE user_id = ?", $user_id);
-  $value2 = db_query("DELETE FROM application_languages WHERE user_id = ?", $user_id);
-  $value3 = db_query("DELETE FROM application WHERE user_id = ?", $user_id);
+  $value1 = query_data("DELETE FROM users WHERE user_id = ?", $user_id);
+  $value2 = query_data("DELETE FROM application_languages WHERE user_id = ?", $user_id);
+  $value3 = query_data("DELETE FROM application WHERE user_id = ?", $user_id);
 }
 
 function get_Login($user_id, $default = FALSE) {
-  $value = db_result("SELECT login FROM users WHERE user_id = ?", $user_id);
+  $value = result("SELECT login FROM users WHERE user_id = ?", $user_id);
   if (!$value) {
     return $default;
   }
@@ -136,7 +136,7 @@ function get_pass_login($default = FALSE) {
 }
 
 function get_pass_login_user($login, $default = FALSE) {
-  $value = db_result("SELECT * FROM users WHERE login = ?", $login);
+  $value = result("SELECT * FROM users WHERE login = ?", $login);
     if (!$value) {
           return $default;
   }
