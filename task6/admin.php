@@ -3,7 +3,7 @@
 require_once('database.php'); 
 
 function checkAuth() {
- $row = db_get_Pass_Login();
+ $row = get_pass_login();
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != $row["login"] ||
