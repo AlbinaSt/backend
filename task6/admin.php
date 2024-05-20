@@ -1,22 +1,9 @@
 <?php
 
 require_once('database.php'); 
+require_once('authorization.php');
 
-function checkAuth() {
- $row = get_pass_login();
-if (empty($_SERVER['PHP_AUTH_USER']) ||
-    empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != $row["login"] ||
-    password_verify($_SERVER['PHP_AUTH_PW'], $row["password"])) {
-  header('HTTP/1.1 401 Unanthorized');
-  header('WWW-Authenticate: Basic realm="My site"');
-  print('<h1>401 Требуется авторизация</h1>');
-  exit();
-}
-}
-checkAuth();
-
-print('Вы успешно авторизовались и видите защищенные паролем данные.');
+print('Вы успешно авторизовались.');
 
 ?>
 
