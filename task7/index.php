@@ -1,6 +1,27 @@
 <?php
 
 header('Content-Type: text/html; charset=UTF-8');
+ $files = [
+ 'form.php',
+ 'database.php',
+];
+function safe_require($file) {
+global $files;
+ if (in_array($file, $files)) {
+  require_once($file);
+ } else {
+ echo "Недопустимый файл";
+ }
+}
+function safe_include($file) {
+global $files;
+ if (in_array($file, $files)) {
+  include($file);
+ } else {
+ echo "Недопустимый файл";
+ }
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   
