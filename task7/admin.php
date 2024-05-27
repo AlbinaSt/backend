@@ -1,7 +1,21 @@
 <?php
 
-require_once('database.php'); 
-require_once('authorization.php');
+ $files = [
+ 'authorization.php',
+ 'database.php',
+];
+
+function safe_require_once($file) {
+global $files;
+ if (in_array($file, $files)) {
+  require_once($file);
+ } else {
+ echo "Недопустимый файл";
+ }
+}
+safe_require_once('database.php');   
+safe_require_once('authorization.php'); 
+
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.');
 
