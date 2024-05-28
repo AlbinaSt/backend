@@ -63,15 +63,15 @@ if (empty($_POST['email'])) {
 if (empty($_POST['check-1'])) {
     print('Заполните пол.<br/>');
     $errors = TRUE;
-} elseif ($_POST['check-1'] !== 'W' && $_POST['check-1'] !== 'M') {
+} elseif ($_POST['check-1'] !== 'ж' && $_POST['check-1'] !== 'м') {
     print('Выберите только мужской или женский пол.<br/>');
     $errors = TRUE;
 }
 
-if (empty($_POST[''])) {
+if (empty($_POST['radio-1'])) {
     print('Подтвердите соглашение.<br/>');
     $errors = TRUE;
-} elseif ($_POST['ok'] !== 'on') {
+} elseif ($_POST['radio-1'] !== 'on') {
     print('Подтвердите соглашение.<br/>');
     $errors = TRUE;
 }
@@ -89,11 +89,11 @@ if (empty($_POST['abilities'])) {
         }
     }
 }
-if (empty($_POST['bio'])) {
+if (empty($_POST['field-name-2'])) {
   print('Запоните биографию.<br/>');
   $errors = TRUE;
-}elseif (strlen($_POST['bio']) > 300) {
-            print('Биография '.$_POST['bio'].' не должна превышать 300 символов.<br/>');
+}elseif (strlen($_POST['field-name-2']) > 300) {
+            print('Биография '.$_POST['field-name-2'].' не должна превышать 300 символов.<br/>');
             $errors = TRUE;
         }
 if (empty($_POST['abilities'])) {
