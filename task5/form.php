@@ -71,11 +71,11 @@ if (!empty($messages)) {
     <form class="form" action="" method="POST">
       <h2>Заявка</h2>
       <br />
-      Введите имя: <br /><input type="text" name="fio" value="<?php echo isset($_COOKIE['fio']) ? $_COOKIE['fio'] : ''; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
+      Введите имя: <br /><input type="text" name="fio" value="<?php echo isset($_COOKIE['fio']) ? $_COOKIE['fio'] : ''; ?>" value="<?php print $values['name']; ?>" pattern="[a-zA-Zа-яА-Я\s]+" title="Имя должно содержать только буквы и пробелы" required>
       <br />
-      Введите телефон: <br /> <input type="tel" name="telephone" value="<?php echo isset($_COOKIE['telephone']) ? $_COOKIE['telephone'] : ''; ?>" pattern="/^+?[0-9\s-]*$/" title="Введите корректный номер телефона" required>
+      Введите телефон: <br /> <input type="tel" name="telephone" value="<?php echo isset($_COOKIE['telephone']) ? $_COOKIE['telephone'] : ''; ?>" value="<?php print $values['phone']; ?>" pattern="/^+?[0-9\s-]*$/" title="Введите корректный номер телефона" required>
       <br />
-      Введите почту: <br /> <input type="email" name="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" title="Введите корректный email адрес" required>
+      Введите почту: <br /> <input type="email" name="email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" value="<?php print $values['email']; ?>" title="Введите корректный email адрес" required>
       <br />
       Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php  echo isset($_COOKIE['year']) ? $_COOKIE['year'] : ''; ?>"
       <br />
