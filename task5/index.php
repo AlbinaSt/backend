@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['field-name-2'] = empty($_COOKIE['field_value']) ? '' : $_COOKIE['field_value'];
   $values['check-1'] = empty($_COOKIE['check_value']) ? '' : $_COOKIE['check_value'];
 
-  if (!empty($_SESSION['login'])) {
+  if (session_start() && (!empty($_SESSION['login'])) && (!empty($_COOKIE[session_name()])) && $error) {
   // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
   // ранее в сессию записан факт успешного логина.
   include('../db.php');
