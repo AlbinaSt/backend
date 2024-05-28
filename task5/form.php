@@ -77,7 +77,7 @@ if (!empty($messages)) {
       <br />
       Введите почту: <br /> <input type="email" name="email" value="<?php print $values['email']; ?>" title="Введите корректный email адрес" required>
       <br />
-      Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php  echo isset($_COOKIE['year']) ? $_COOKIE['year'] : ''; ?>"
+      Введите дату рождения: <br /><input name="year" type="date" <?php if ($errors['year']) {print 'class="error"';} ?> value="<?php echo isset($values['data']) ? $values['data'] : '2000-01-01'; ?>"
       <br />
     <br />
       <label>
@@ -102,17 +102,19 @@ if (!empty($messages)) {
   <label>
   Любимый язык программирования:
       <br />
-    <select id="example-getting-started" class = "f" name="abilities[]" multiple="multiple">
-            <option disabled>Выберите любимый язык пр.</option>
-            <option value="Pascal">Pascal</option>
-            <option value="C">C</option>
-            <option value="C++">C++</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="PHP">PHP</option>
-            <option value="Python">Python</option>
-            <option value="Java">Java</option>
-            <option value="Haskel">Haskel</option>
-        </select>
+  <select style="width: calc(100% - 18px); padding: 8px; margin-bottom: 20px; border: 1px solid #1c87c9; outline: none;" name="abilities[]" multiple="multiple" <?php if ($errors['abilities'] || $errors['abilities_struct']) {echo 'class="error"';} 
+$abilities_array = is_array($values['abilities']) ? $values['abilities'] : [];
+  ?>>
+    <option disabled>Выберите любимый язык пр.</option>
+    <option value="Pascal" <?php if(in_array('Pascal', $abilities_array)) {echo 'selected';}?>>Pascal</option>
+    <option value="C" <?php if(in_array('C', $abilities_array)) {echo 'selected';} ?>>C</option>
+    <option value="C++" <?php if(in_array('C++', $abilities_array)) {echo 'selected';} ?>>C++</option>
+    <option value="JavaScript" <?php if(in_array('JavaScript', $abilities_array)) {echo 'selected';} ?>>JavaScript</option>
+    <option value="PHP" <?php if(in_array('PHP', $abilities_array)) {echo 'selected';} ?>>PHP</option>
+    <option value="Python" <?php if(in_array('Python', $abilities_array)) {echo 'selected';} ?>>Python</option>
+    <option value="Java" <?php if(in_array('Java', $abilities_array)) {echo 'selected';} ?>>Java</option>
+    <option value="Haskel"<?php if (in_array('Haskel', $abilities_array)) { echo ' selected'; } ?>>Haskel</option>
+</select>
   </label>
   <br />
         <label>
@@ -120,6 +122,7 @@ if (!empty($messages)) {
           <textarea
             name="field-name-2"
             placeholder="Введите текст"
+            <?php print $values['bio']; ?>
           ></textarea></label
         ><br />
         <br />
