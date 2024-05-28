@@ -126,13 +126,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       print('Error : ' . $e->getMessage());
       exit();
     }
-    setcookie('name_value',$row['name'], time() + 30 * 24 * 60 * 60);
-    setcookie('phone_value',$row['phone'], time() + 30 * 24 * 60 * 60);
-    setcookie('email_value',$row['email'], time() + 30 * 24 * 60 * 60);
-    setcookie('data_value',$row['data'], time() + 30 * 24 * 60 * 60);
-    setcookie('pol_value',$row['pol'], time() + 30 * 24 * 60 * 60);
-    setcookie('bio_value',$row['bio'], time() + 30 * 24 * 60 * 60);
-    setcookie('ok_value',$row['ok'], time() + 30 * 24 * 60 * 60);
+    setcookie('name_value',$values['name'], time() + 30 * 24 * 60 * 60);
+    setcookie('phone_value',$values['phone'], time() + 30 * 24 * 60 * 60);
+    setcookie('email_value',$values['email'], time() + 30 * 24 * 60 * 60);
+    setcookie('data_value',$values['data'], time() + 30 * 24 * 60 * 60);
+    setcookie('pol_value',$values['pol'], time() + 30 * 24 * 60 * 60);
+    setcookie('bio_value',$values['bio'], time() + 30 * 24 * 60 * 60);
+    setcookie('ok_value',$values['ok'], time() + 30 * 24 * 60 * 60);
     setcookie('abilities_value', $abilities_serialized, time() + 30 * 24 * 60 * 60);
 
 	  
