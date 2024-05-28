@@ -121,7 +121,7 @@ $abilities_array = is_array($values['abilities']) ? $values['abilities'] : [];
           Биография:<br />
           <textarea
             name="field-name-2"
-            placeholder="Введите текст"
+             placeholder="<?php print $values['bio']; ?>"
             <?php print $values['bio']; ?>
           ></textarea></label
         ><br />
