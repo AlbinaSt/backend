@@ -20,46 +20,88 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 
 // Проверяем ошибки.
+
 $errors = FALSE;
 if (empty($_POST['fio'])) {
-  print('Заполните имя.<br/>');
-  $errors = TRUE;
-}
-
-if (empty($_POST['year'])) {
-  print('Заполните год.<br/>');
-  $errors = TRUE;
+    print('Заполните имя.<br/>');
+    $errors = TRUE;
+} elseif (!preg_match('/^[\p{L}\s]+$/u', $_POST['fio'])) {
+    print('Имя может содержать только буквы и пробелы.<br/>');
+    $errors = TRUE;
+} elseif (strlen($_POST['fio']) > 150) {
+    print('Имя '.$_POST['fio'].' не должно превышать 150 символов.<br/>');
+    $errors = TRUE;
 }
 
 if (empty($_POST['telephone'])) {
-  print('Заполните телефон.<br/>');
+    print('Заполните телефон.<br/>');
+    $errors = TRUE;
+} elseif (!preg_match('/^\d+$/', $_POST['telephone'])) {
+    print('Телефон должен состоять только из цифр.<br/>');
+    $errors = TRUE;
+}elseif (strlen($_POST['telephone']) > 11) {
+            print('Телефон '.$_POST['telephone'].' не должно превышать 11 символов.<br/>');
+            $errors = TRUE;
+        }
+if (empty($_POST['year'])) {
+  print('Заполните дату.<br/>');
+  $errors = TRUE;
+} elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['year'])) {
+  print('Дата должна быть в формате YYYY-MM-DD.<br/>');
   $errors = TRUE;
 }
-
 if (empty($_POST['email'])) {
-  print('Заполните почту.<br/>');
-  $errors = TRUE;
-}
-
-if (empty($_POST['radio-1'])) {
-  print('Выберете вариант.<br/>');
-  $errors = TRUE;
-}
-
-if (empty($_POST['field-name-2'])) {
-  print('Введите текст.<br/>');
-  $errors = TRUE;
-}
-
+    print('Заполните адрес электронной почты.<br/>');
+    $errors = TRUE;
+} elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    print('Введите корректный адрес электронной почты.<br/>');
+    $errors = TRUE;
+}elseif (strlen($_POST['email']) > 150) {
+            print('Адрес электронной почты '.$_POST['email'].' не должен превышать 150 символов.<br/>');
+            $errors = TRUE;
+        }
 if (empty($_POST['check-1'])) {
-  print('Необходимо согласие.<br/>');
-  $errors = TRUE;
+    print('Заполните пол.<br/>');
+    $errors = TRUE;
+} elseif ($_POST['check-1'] !== 'W' && $_POST['check-1'] !== 'M') {
+    print('Выберите только мужской или женский пол.<br/>');
+    $errors = TRUE;
 }
+
+if (empty($_POST[''])) {
+    print('Подтвердите соглашение.<br/>');
+    $errors = TRUE;
+} elseif ($_POST['ok'] !== 'on') {
+    print('Подтвердите соглашение.<br/>');
+    $errors = TRUE;
+}
+$allowed_languages = array("Pascal", "C", "C++", "JavaScript", "PHP", "Python", "Java", "Haskel");
 
 if (empty($_POST['abilities'])) {
-  print('Выберите языки.<br/>');
-  $errors = TRUE;
+    print('Выберите хотя бы 1 язык программирования.<br/>');
+    $errors = TRUE;
+} else {
+    foreach ($_POST['abilities'] as $language) {
+        if (!in_array($language, $allowed_languages)) {
+            print('Выберите только представленные языки.<br/>');
+            $errors = TRUE;
+            break;
+        }
+    }
 }
+if (empty($_POST['bio'])) {
+  print('Запоните биографию.<br/>');
+  $errors = TRUE;
+}elseif (strlen($_POST['bio']) > 300) {
+            print('Биография '.$_POST['bio'].' не должна превышать 300 символов.<br/>');
+            $errors = TRUE;
+        }
+if (empty($_POST['abilities'])) {
+    print('Выберите хотя бы 1 язык программирования.<br/>');
+    $errors = TRUE;
+}
+
+
 
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.
